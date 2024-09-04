@@ -67,6 +67,30 @@ class Matrix:
         for i in range(0, self.width):
             self.data[row2][i] = (scalar * self.data[row1][i]) + self.data[row2][i]
 
+    def isConsistent(self):
+        #goal: check if the matrix is consistent after a row reduction
+        #input: matrix
+        #output: true or false
+
+        zeroCounter = 0
+
+        #for each row
+        for i in range(0, self.height):
+            #if all coeff are 0 and constant = 0
+            zeroCounter = 0
+
+            for j in range(0, self.width - 1):
+                if (self.data[i][j] == 0):
+                    zeroCounter += 1
+            
+            #if # of zeros is the same as width, fail
+            if (zeroCounter == self.width - 1 and self.data[i][-1] != 0):
+                return False
+            
+            zeroCounter = 0
+            
+        return True
+
 #starting with input:
 def inputMatrix():
 
@@ -122,7 +146,7 @@ if __name__ == "__main__":
 
     #input the matrix
     ##matrix = inputMatrix()
-    matrix = [[1,3,7,9],[0,5,2,1],[0,0,3,7]]
+    matrix = [[1,3,7,9],[0,5,2,1],[0,1,0,0]]
 
     myMatrix = Matrix(3,4)
     myMatrix.load(matrix)
@@ -147,3 +171,5 @@ if __name__ == "__main__":
     print("\nAdding -2R1 + R2 => R2; should expect R2 = [-2 -1 -12 -17]")
     myMatrix.add(-2, 0, 1)
     myMatrix.display()
+
+    print(myMatrix.isConsistent())
