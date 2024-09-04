@@ -22,27 +22,32 @@ The output is the matrix in row reduced echelon form, defined by the folowing cr
 
 ### Steps
 
-#### Functions:
-
 Here is an example augmented matrix, defined as 3 x 4, 3 variables and 3 equations
+
+3x<sub>1</sub> + 5x<sub>2</sub> + 1x<sub>3</sub> = 4<br>
+0x<sub>1</sub> + 2x<sub>2</sub> + 4x<sub>3</sub> = 5<br>
+0x<sub>1</sub> + 0x<sub>2</sub> + 7x<sub>3</sub> = 2
 ```
 [3 5 1 | 4]
 [0 2 4 | 5]
 [0 0 7 | 2]
 ```
+
+#### Functions:
+
 * Input the matrix (take it in from the user and represent it using a 2D list in python)
 * Define elementary row operations:
     * Scale: multiply a row by a scalar value
     * Interchange: swap two rows
     * Add: Add a multiple of a row to another row
-* isConsistent, checks if the system is consistent by looking for inconsistent rows ex. `[0 0 0 | 1]` 0x~1 + 0x~2 + 0x~3 = 1 (0 != 1)
+* isConsistent, checks if the system is consistent by looking for inconsistent rows ex. `[0 0 0 | 1]` 0x<sub>1</sub> + 0x<sub>2</sub> + 0x<sub>3</sub> = 1, (0 != 1)
 * RowReduce, using the elementary operations, checks for consistency and reduced the matrix
 
 #### Examples
 
 Scale ex.
 
-2R~1 => R~1
+2R<sub>2</sub> => R<sub>2</sub>
 ```
 [3 5 1 | 4 ]
 [0 4 8 | 10]
@@ -50,7 +55,7 @@ Scale ex.
 ```
 Interchange ex.
 
-R~1 <=> R~3
+R<sub>1</sub> <=> R<sub>3</sub>
 ```
 [0 0 7 | 2]
 [0 2 4 | 5]
@@ -58,7 +63,7 @@ R~1 <=> R~3
 ```
 Add ex.
 
--2R~1 + R~2 => R~2
+-2R<sub>1</sub> + R<sub>2</sub> => R<sub>2</sub>
 ```
 [3  5  1 |  4]
 [0 -8 -2 | -3]
