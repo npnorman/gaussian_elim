@@ -77,6 +77,13 @@ def printMatrix(mat):
         print(" |")
 
 if __name__ == "__main__":
-    matrix = inputMatrix()
 
+    #input the matrix
+    matrix = inputMatrix()
     printMatrix(matrix)
+
+    #define row operations
+
+    #algorithm to pick which operations to do
+
+    #we want it in guass form then guass jordan
