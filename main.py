@@ -48,6 +48,8 @@ class Matrix:
             #multiply item by scalar value
             self.data[row][i] = self.data[row][i] * scalar
 
+        print(f"{scalar}R{row+1} => R{row+1}")
+
     def interchange(self, row1, row2):
         #goal: interchange 2 rows
         #input: matrix and 2 rows
@@ -58,6 +60,8 @@ class Matrix:
         self.data[row2] = self.data[row1]
         self.data[row1] = tmpRow
 
+        print(f"R{row1+1} <=> R{row2+1}")
+
     def add(self, scalar, row1, row2):
         #goal add row 1 * scalar to row2 (scalar * row1) + row2 => row2
         #input: row1 to multiply by scalar and add to row2
@@ -66,6 +70,8 @@ class Matrix:
         #for each column
         for i in range(0, self.width):
             self.data[row2][i] = (scalar * self.data[row1][i]) + self.data[row2][i]
+
+        print(f"{scalar}R{row1+1} + R{row2+1} => R{row2+1}")
 
     def isConsistent(self):
         #goal: check if the matrix is consistent after a row reduction
@@ -154,7 +160,6 @@ class Matrix:
 
         #interchange based on leading zeros
         self.descend()
-        print(self.data) #***************************************************************************
 
         #for row in matrix
         for i in range(0, self.height):
@@ -246,9 +251,8 @@ if __name__ == "__main__":
     #      x2 + x3 = 12
     #      4x2 + 2x3 = 34
 
-    #[0,4,2,34]
-
     matrix = [
+        [0,4,2,34],
         [0,0,1,7],
         [2,3,1,26]]
 
@@ -257,8 +261,10 @@ if __name__ == "__main__":
     
     myMatrix.display()
 
+    print("reducing:\n\noperations:")
+
     myMatrix.rowReduce()
 
-    print("reducing")
+    print("")
 
     myMatrix.display()
