@@ -114,6 +114,25 @@ class Matrix:
         
         return index
     
+    def sort(self):
+        #goal: sort rows by index in order of lest to most depth
+        #input: matrix
+        #output: a list of row indexes
+
+        depth = []
+
+        #for each row
+        for j in range(0, self.height):
+            #for each row, count zeros to pivot
+            pivotIndex = self.findPivot(j)
+            print("pivot index", pivotIndex, " j: ", j)
+            depth.append([pivotIndex, j]) #stores [depth, rowIndex]
+
+        #sort by depth
+        depth.sort()
+
+        return depth
+    
     def rowReduce(self):
         #goal: row reduce the matrix into row reduced echelon form
         #input: matrix
@@ -209,8 +228,8 @@ if __name__ == "__main__":
     #      4x2 + 2x3 = 34
 
     matrix = [
+        [0,0,1,7],
         [2,3,1,26],
-        [0,1,1,12],
         [0,4,2,34]]
 
     myMatrix = Matrix(3,4)
@@ -240,6 +259,8 @@ if __name__ == "__main__":
     print(myMatrix.isConsistent())
     """
 
-    myMatrix.rowReduce()
+    ##myMatrix.rowReduce()
 
-    myMatrix.display()
+    ##myMatrix.display()
+
+    myMatrix.sort()
