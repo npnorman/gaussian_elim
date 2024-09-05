@@ -42,6 +42,9 @@ Here is an example augmented matrix, defined as 3 x 4, 3 variables and 3 equatio
     * Add: Add a multiple of a row to another row
 * isConsistent, checks if the system is consistent by looking for inconsistent rows ex. `[0 0 0 | 1]` 0x<sub>1</sub> + 0x<sub>2</sub> + 0x<sub>3</sub> = 1, (0 != 1)
 * RowReduce, using the elementary operations, checks for consistency and reduced the matrix
+* findPivot: finds the index of the pivot point of a row
+* sort: sorts by depth of pivot point and row index
+* descend: sort rows using interchange in descending order
 
 #### Examples
 
