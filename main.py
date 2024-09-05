@@ -100,10 +100,11 @@ class Matrix:
         keepGoing = True
         index = 0
         while(keepGoing == True):
+
             if(self.data[row][index] != 0):
                 keepGoing = False
 
-            elif(index > self.height - 2):
+            elif(index > self.width - 1):
             #if not a varibale, no pivot
 
                 keepGoing = False
@@ -153,6 +154,7 @@ class Matrix:
 
         #interchange based on leading zeros
         self.descend()
+        print(self.data) #***************************************************************************
 
         #for row in matrix
         for i in range(0, self.height):
@@ -244,10 +246,11 @@ if __name__ == "__main__":
     #      x2 + x3 = 12
     #      4x2 + 2x3 = 34
 
+    #[0,4,2,34]
+
     matrix = [
         [0,0,1,7],
-        [2,3,1,26],
-        [0,4,2,34]]
+        [2,3,1,26]]
 
     myMatrix = Matrix(len(matrix),len(matrix[0]))
     myMatrix.load(matrix)
