@@ -125,7 +125,6 @@ class Matrix:
         for j in range(0, self.height):
             #for each row, count zeros to pivot
             pivotIndex = self.findPivot(j)
-            print("pivot index", pivotIndex, " j: ", j)
             depth.append([pivotIndex, j]) #stores [depth, rowIndex]
 
         #sort by depth
@@ -133,12 +132,27 @@ class Matrix:
 
         return depth
     
+    def descend(self):
+        #goal: sort in descending order
+        #input: matrix
+        #output: interchanged rows
+
+        #for all rows
+        for j in range(0, self.height):
+            #sort
+            depth = self.sort()
+            #if sort-row index(1) == matrix-row index (j) #not already the same row
+            if (depth[j][1] != j):
+                #interchange sort[j][1] with matrix[j]
+                self.interchange(depth[j][1], j)
+    
     def rowReduce(self):
         #goal: row reduce the matrix into row reduced echelon form
         #input: matrix
         #output: matrix in RREF
 
         #interchange based on leading zeros
+        self.descend()
 
         #for row in matrix
         for i in range(0, self.height):
@@ -162,6 +176,9 @@ class Matrix:
 
         
         #check consistency
+        if(self.isConsistent != True):
+            #tell user that it is inconsistent
+            print("This matrix is inconsistent")
 
 #starting with input:
 def inputMatrix():
@@ -236,31 +253,9 @@ if __name__ == "__main__":
     myMatrix.load(matrix)
     
     myMatrix.display()
-    """
-    #test scalar operation
-    print("\nscale row 2 by 3 => 0 15 6 3")
-    myMatrix.scale(1,3)
+
+    myMatrix.rowReduce()
+
+    print("reducing")
+
     myMatrix.display()
-
-    #test interchange operation
-    myMatrix.load(matrix) #reset matrix
-    print("resetting matrix to original")
-    print("\nInterchange row 1 and 3")
-    myMatrix.interchange(0,2)
-    myMatrix.display()
-
-    #test add operation
-    myMatrix.load(matrix) #reset matrix
-    print("resetting matrix to original")
-    print("\nAdding -2R1 + R2 => R2; should expect R2 = [-2 -1 -12 -17]")
-    myMatrix.add(-2, 0, 1)
-    myMatrix.display()
-
-    print(myMatrix.isConsistent())
-    """
-
-    ##myMatrix.rowReduce()
-
-    ##myMatrix.display()
-
-    myMatrix.sort()
