@@ -34,7 +34,7 @@ class Matrix:
             print("| ", end="")
 
             for j in range(0, self.width):
-                print(self.data[i][j], end=" ")
+                print(round(self.data[i][j], 2), end=" ")
 
             #line break
             print("|")
@@ -90,6 +90,59 @@ class Matrix:
             zeroCounter = 0
             
         return True
+    
+    def findPivot(self, row):
+        #goal: get index of pivot point
+        #input: matrix and row
+        #output: index of pivot point
+
+        #in row, go thru until a number is not a zero
+        keepGoing = True
+        index = 0
+        while(keepGoing == True):
+            if(self.data[row][index] != 0):
+                keepGoing = False
+
+            elif(index > self.height - 2):
+            #if not a varibale, no pivot
+
+                keepGoing = False
+                index = -1
+
+            else:
+                index += 1
+        
+        return index
+    
+    def rowReduce(self):
+        #goal: row reduce the matrix into row reduced echelon form
+        #input: matrix
+        #output: matrix in RREF
+
+        #interchange based on leading zeros
+
+        #for row in matrix
+        for i in range(0, self.height):
+            #find pivot point
+            pivotIndex = self.findPivot(i)
+            pivot = self.data[i][pivotIndex]
+
+            #make sure there is a pivot!
+            if (pivotIndex != -1):
+                #scale pivot to 1
+                self.scale(i, (1/pivot))
+
+                #for every OTHER number above and below pivot
+                for j in range(0,self.height):
+                    #if not the current tab
+                    if(j != i):
+                        #if not a zero
+                        if(self.data[j][pivotIndex] != 0):
+                            #add operation to make 0
+                            self.add(-1 * (self.data[j][pivotIndex]), i, j)
+
+        
+        #check consistency
 
 #starting with input:
 def inputMatrix():
@@ -146,13 +199,25 @@ if __name__ == "__main__":
 
     #input the matrix
     ##matrix = inputMatrix()
-    matrix = [[1,3,7,9],[0,5,2,1],[0,1,0,0]]
+
+    #x1 = 2
+    #x2 = 5
+    #x3 = 7
+
+    #2x1 + 3x2 + x3 = 26
+    #      x2 + x3 = 12
+    #      4x2 + 2x3 = 34
+
+    matrix = [
+        [2,3,1,26],
+        [0,1,1,12],
+        [0,4,2,34]]
 
     myMatrix = Matrix(3,4)
     myMatrix.load(matrix)
     
     myMatrix.display()
-
+    """
     #test scalar operation
     print("\nscale row 2 by 3 => 0 15 6 3")
     myMatrix.scale(1,3)
@@ -173,3 +238,8 @@ if __name__ == "__main__":
     myMatrix.display()
 
     print(myMatrix.isConsistent())
+    """
+
+    myMatrix.rowReduce()
+
+    myMatrix.display()
