@@ -88,7 +88,7 @@ class Matrix:
                 return False
             
             zeroCounter = 0
-            
+
         return True
     
     def findPivot(self, row):
@@ -176,7 +176,7 @@ class Matrix:
 
         
         #check consistency
-        if(self.isConsistent != True):
+        if(self.isConsistent() != True):
             #tell user that it is inconsistent
             print("This matrix is inconsistent")
 
@@ -249,7 +249,7 @@ if __name__ == "__main__":
         [2,3,1,26],
         [0,4,2,34]]
 
-    myMatrix = Matrix(3,4)
+    myMatrix = Matrix(len(matrix),len(matrix[0]))
     myMatrix.load(matrix)
     
     myMatrix.display()

@@ -69,3 +69,5 @@ Add ex.
 [0 -8 -2 | -3]
 [0  0  7 |  2]
 ```
+
+### Dealing with free variables
