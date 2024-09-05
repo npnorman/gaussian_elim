@@ -252,9 +252,8 @@ if __name__ == "__main__":
     #      4x2 + 2x3 = 34
 
     matrix = [
-        [0,4,2,34],
-        [0,0,1,7],
-        [2,3,1,26]]
+        [5,-2,24],
+        [-2,3,-3]]
 
     myMatrix = Matrix(len(matrix),len(matrix[0]))
     myMatrix.load(matrix)
