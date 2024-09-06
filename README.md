@@ -45,6 +45,8 @@ Here is an example augmented matrix, defined as 3 x 4, 3 variables and 3 equatio
 * findPivot: finds the index of the pivot point of a row
 * sort: sorts by depth of pivot point and row index
 * descend: sort rows using interchange in descending order
+* getLog: returns the log of operations
+* clearLog: clears the log of opeartions
 
 #### Examples
 
@@ -82,13 +84,13 @@ Null Constructor also works.
 
 The Matrix object has a constructor that takes 1 parameter, the matrix that the user wants to represent. It must be a 2-dimensional list. An example is as such: `matrix = [[0,1,2,3],[4,5,6,7],[8,9,1,2]]`
 
-load(): To change the matrix or load after constructing use `myMatrix.load(matrix)`
+`load()`: To change the matrix or load after constructing use `myMatrix.load(matrix)`
 
-display(decimal): This displays the matrix in a readable format. `decimal` respresents the amount of digits to round to in python's `round()` function.
+`display(decimal)`: This displays the matrix in a readable format. `decimal` respresents the amount of digits to round to in python's `round()` function.
 
-isConsistent(): Returns `True` if a consistent matrix, definined as having at least one solution.
+`isConsistent()`: Returns `True` if a consistent matrix, definined as having at least one solution.
 
-rowReduce(): Reduces the matrix to row reduced echelon form as defined by:
+`rowReduce()`: Reduces the matrix to row reduced echelon form as defined by:
 
 * (a) Every pivot point must be a 1
 * (b) All pivot points must descend
@@ -96,9 +98,9 @@ rowReduce(): Reduces the matrix to row reduced echelon form as defined by:
 
 When performing a row reduction, the operations performed can be given as a list to the user. The log does not automatically clear and must be cleared automatically.
 
-getLog(): Returns a list of each operation (in human reable/math format).
+`getLog()`: Returns a list of each operation (in human reable/math format).
 
-clearLog(): clears the log after use.
+`clearLog()`: clears the log after use.
 
 ### Example of use
 
