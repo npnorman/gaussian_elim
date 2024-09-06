@@ -16,6 +16,7 @@ class Matrix:
         self.height = height
         self.width = width
         self.data = []
+        self.log = []
 
     def load(self, matrix):
         #goal: load a matrix into the system
@@ -24,9 +25,9 @@ class Matrix:
 
         self.data = copy.deepcopy(matrix)
     
-    def display(self):
+    def display(self, decimal):
         #goal is to print a matrix in a readable format
-        #input: multidimensional array
+        #input: multidimensional array, integer
         #output: readable matrix
 
         for i in range(0, self.height):
@@ -34,7 +35,7 @@ class Matrix:
             print("| ", end="")
 
             for j in range(0, self.width):
-                print(round(self.data[i][j], 2), end=" ")
+                print(round(self.data[i][j], decimal), end=" ")
 
             #line break
             print("|")
@@ -48,7 +49,7 @@ class Matrix:
             #multiply item by scalar value
             self.data[row][i] = self.data[row][i] * scalar
 
-        print(f"{scalar}R{row+1} => R{row+1}")
+        self.log.append(f"{scalar}R{row+1} => R{row+1}")
 
     def interchange(self, row1, row2):
         #goal: interchange 2 rows
@@ -60,7 +61,7 @@ class Matrix:
         self.data[row2] = self.data[row1]
         self.data[row1] = tmpRow
 
-        print(f"R{row1+1} <=> R{row2+1}")
+        self.log.append(f"R{row1+1} <=> R{row2+1}")
 
     def add(self, scalar, row1, row2):
         #goal add row 1 * scalar to row2 (scalar * row1) + row2 => row2
@@ -71,7 +72,7 @@ class Matrix:
         for i in range(0, self.width):
             self.data[row2][i] = (scalar * self.data[row1][i]) + self.data[row2][i]
 
-        print(f"{scalar}R{row1+1} + R{row2+1} => R{row2+1}")
+        self.log.append(f"{scalar}R{row1+1} + R{row2+1} => R{row2+1}")
 
     def isConsistent(self):
         #goal: check if the matrix is consistent after a row reduction
@@ -187,6 +188,20 @@ class Matrix:
             #tell user that it is inconsistent
             print("This matrix is inconsistent")
 
+    def getLog(self):
+        #goal: return the log
+        #input: nothing
+        #output: log
+
+        return self.log
+    
+    def clearLog(self):
+        #goal: clear log
+        #input: none
+        #output: none
+
+        self.log.clear()
+
 #starting with input:
 def inputMatrix():
 
@@ -258,12 +273,16 @@ if __name__ == "__main__":
     myMatrix = Matrix(len(matrix),len(matrix[0]))
     myMatrix.load(matrix)
     
-    myMatrix.display()
-
-    print("reducing:\n\noperations:")
+    myMatrix.display(3)
 
     myMatrix.rowReduce()
 
+    print("reducing:\n\noperations:")
+
+    log = myMatrix.getLog()
+    for i in log:
+        print(i)
+
     print("")
 
-    myMatrix.display()
+    myMatrix.display(3)

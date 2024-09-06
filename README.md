@@ -72,3 +72,9 @@ Add ex.
 [0 -8 -2 | -3]
 [0  0  7 |  2]
 ```
+
+### Tracking operations
+
+When performing a row reduction, the operations performed can be given as a list to the user. The log does not automatically clear and must be cleared automatically.
+
+`matrix.log()` Returns a list. `matrix.clearLog()` clears the log after use.
