@@ -96,11 +96,11 @@ The Matrix object has a constructor that takes 1 parameter, the matrix that the 
 * (b) All pivot points must descend
 * (c) Every number above and below a pivot point must be a 0
 
-When performing a row reduction, the operations performed can be given as a list to the user. The log does not automatically clear and must be cleared automatically.
+When performing a row reduction, the operations performed can be given as a list to the user.
 
 `getLog()`: Returns a list of each operation (in human reable/math format).
 
-`clearLog()`: clears the log after use.
+`clearLog()`: clears the log. Note: the log never clears automatically.
 
 ### Example of use
 
