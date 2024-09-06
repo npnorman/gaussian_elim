@@ -35,7 +35,6 @@ Here is an example augmented matrix, defined as 3 x 4, 3 variables and 3 equatio
 
 #### Functions:
 
-* Input the matrix (take it in from the user and represent it using a 2D list in python)
 * Define elementary row operations:
     * Scale: multiply a row by a scalar value
     * Interchange: swap two rows
@@ -76,8 +75,6 @@ Add ex.
 ```
 
 ### Using the Matrix Object
-
-#### Constructing
 
 Constructor: `myMatrix = Matrix(matrix)`<br>
 Null Constructor also works.
