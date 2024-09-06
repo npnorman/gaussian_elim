@@ -1,4 +1,4 @@
-# gaussian_elim
+# My Matrix
 
 ## Nicholas Norman, August 2024
 
