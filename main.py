@@ -12,11 +12,14 @@ import copy
 #define a matrix object to have functions inside
 
 class Matrix:
-    def __init__(self, height, width):
-        self.height = height
-        self.width = width
+    def __init__(self, matrix=None):
+        self.height = 1
+        self.width = 2
         self.data = []
         self.log = []
+
+        if (matrix != None):
+            self.load(matrix)
 
     def load(self, matrix):
         #goal: load a matrix into the system
@@ -24,6 +27,9 @@ class Matrix:
         #output: changes matrix object
 
         self.data = copy.deepcopy(matrix)
+
+        self.height = len(matrix)
+        self.width = len(matrix[0])
     
     def display(self, decimal):
         #goal is to print a matrix in a readable format
@@ -267,11 +273,12 @@ if __name__ == "__main__":
     #      4x2 + 2x3 = 34
 
     matrix = [
-        [2,955,43],
-        [53,-82,-13]]
+        [2,3,1,26],
+        [0,1,1,12],
+        [0,4,2,34]]
 
-    myMatrix = Matrix(len(matrix),len(matrix[0]))
-    myMatrix.load(matrix)
+    myMatrix = Matrix(matrix)
+    #myMatrix.load(matrix)
     
     myMatrix.display(3)
 
@@ -286,3 +293,5 @@ if __name__ == "__main__":
     print("")
 
     myMatrix.display(3)
+
+    myMatrix.clearLog()

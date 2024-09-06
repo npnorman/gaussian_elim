@@ -73,8 +73,88 @@ Add ex.
 [0  0  7 |  2]
 ```
 
-### Tracking operations
+### Using the Matrix Object
+
+#### Constructing
+
+Constructor: `myMatrix = Matrix(matrix)`<br>
+Null Constructor also works.
+
+The Matrix object has a constructor that takes 1 parameter, the matrix that the user wants to represent. It must be a 2-dimensional list. An example is as such: `matrix = [[0,1,2,3],[4,5,6,7],[8,9,1,2]]`
+
+load(): To change the matrix or load after constructing use `myMatrix.load(matrix)`
+
+display(decimal): This displays the matrix in a readable format. `decimal` respresents the amount of digits to round to in python's `round()` function.
+
+isConsistent(): Returns `True` if a consistent matrix, definined as having at least one solution.
+
+rowReduce(): Reduces the matrix to row reduced echelon form as defined by:
+
+* (a) Every pivot point must be a 1
+* (b) All pivot points must descend
+* (c) Every number above and below a pivot point must be a 0
 
 When performing a row reduction, the operations performed can be given as a list to the user. The log does not automatically clear and must be cleared automatically.
 
-`matrix.log()` Returns a list. `matrix.clearLog()` clears the log after use.
+getLog(): Returns a list of each operation (in human reable/math format).
+
+clearLog(): clears the log after use.
+
+### Example of use
+
+```py
+#define a set of linear equations
+#x1 = 2
+#x2 = 5
+#x3 = 7
+
+#2x1 + 3x2 + x3 = 26
+#      x2 + x3 = 12
+#      4x2 + 2x3 = 34
+
+matrix = [
+    [2,3,1,26],
+    [0,1,1,12],
+    [0,4,2,34]]
+
+myMatrix = Matrix(matrix)
+#myMatrix.load(matrix) #another way to load a matrix
+
+myMatrix.display(3) #display to 3 digits
+
+myMatrix.rowReduce() #row reduce
+
+print("reducing:\n\noperations:") #prints operations from the log
+
+log = myMatrix.getLog()
+for i in log:
+    print(i)
+
+print("")
+
+myMatrix.display(3)
+
+myMatrix.clearLog() #clear the log after one use
+```
+
+This outputs as such:
+
+```
+| 2 3 1 26 |
+| 0 1 1 12 |
+| 0 4 2 34 |
+reducing:
+
+operations:
+0.5R1 => R1
+1.0R2 => R2
+-1.5R2 + R1 => R1
+-4R2 + R3 => R3
+-0.5R3 => R3
+1.0R3 + R1 => R1
+-1.0R3 + R2 => R2
+
+| 1.0 0.0 0.0 2.0 |
+| 0.0 1.0 0.0 5.0 |
+| 0.0 0.0 1.0 7.0 |
+```
